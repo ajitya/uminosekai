@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Sawarabi+Mincho&display=swap" rel="stylesheet">
+  <title>海の世界へようこそ</title>
+</head>
+
+<body>
+  <!-- <header> -->
+    <!-- ナビメニュー部分 未実装-->
+    <!-- <nav class="NavMenu">
+      <ul>
+        <li><a href="#" onclick="clickEventOkinawa()">沖縄</a></li>
+        <li><a href="#" onclick="clickEventOgasawara()">小笠原</a></li>
+        <li><a href="#" onclick="clickEventKagoshima()">鹿児島</a></li>
+        <li><a href="#" onclick="clickEventMexico()">メキシコ</a></li>
+        <li><a href="#" onclick="clickEventAfrica()">アフリカ</a></li>
+        <li><a href="#" onclick="clickEventAustralia()">オーストラリア</a></li>
+
+      </ul>
+    </nav> -->
+    <!-- ハンバーガーメニュー部分 -->
+    <!-- <div class="Toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header> -->
+
+  <div class="backImage">
+    <img id="photoSpace" src="images/main.jpg" alt="メイン画像" style="width:100%;">
+  </div>
+
+  <main>
+<!-- 下画像群をクリックすると上のphotoSpaceがクリックした画像に切り替わる -->
+    <ul class="left_list">
+      <li onclick="clickEventMexico()"><img id="mexico" class="photo" src="images/1.png" data-image="images/1.png"></li>
+      <li onclick="clickEventAfrica()"><img id="africa" class="photo" src="images/2.png" data-image="images/2.png"></li>
+      <li onclick="clickEventAustralia()"><img id="australia" class="photo" src="images/3.png" data-image="images/3.png"></li>
+    </ul>
+
+    <section>
+      <h1 id="mainTitle">海の世界へようこそ。</h1>
+<p id="photoText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eveniet libero saepe necessitatibus rerum, esse itaque labore odit nulla unde id veritatis magnam, pariatur quae quaerat est quidem molestiae delectus.</p> <!--      ここにテキストを表示させる-->
+    </section>
+
+    <ul class="right_list">
+      <li onclick="clickEventOkinawa()"><img id="okinawa" class="photo" src="images/4.png" data-image="images/4.png"></li>
+      <li onclick="clickEventOgasawara()"><img id="ogasawara" class="photo" src="images/5.png" data-image="images/5.png"></li>
+      <li onclick="clickEventKagoshima()"><img id="kagoshima" class="photo" src="images/6.png" data-image="images/6.png"></li>
+    </ul>
+
+  </main>
+</body>
+<script src="jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+  //ハンバーガーメニュー
+  $(function() {
+    $('.Toggle').click(function() {
+      $(this).toggleClass('active');
+
+      if ($(this).hasClass('active')) {
+        $('.NavMenu').addClass('active'); //クラスを付与
+      } else {
+        $('.NavMenu').removeClass('active'); //クラスを外す
+      }
+    });
+  });
+
+  //ガゾウキリカエ
+  var thumbs = document.querySelectorAll('.photo');
+  for (var i = 0; i < thumbs.length; i++) {
+    thumbs[i].onclick = function() {
+      const backgroundImage = document.getElementById('photoSpace');
+      backgroundImage.setAttribute("src", this.dataset.image)
+      if(window.getComputedStyle(photoSpace).getPropertyValue('animation-name') == "fadeIn_1"){
+        backgroundImage.setAttribute("style", "animation-name: fadeIn_2; animation-duration: 4s;");
+      }
+      else {
+          backgroundImage.setAttribute("style", "animation-name: fadeIn_1; animation-duration: 4s;");
+      }
+    };
+  }
+
+
+	document.getElementById("photoText").style.display ="none"; //初期状態ではphotoTextを見えなくする
+
+	const photoText = document.getElementById("photoText");
+	function clickEventOkinawa(){
+		if(photoText.style.display　==　"none"){
+			photoText.style.display =　"block";
+			photoText.innerHTML = "沖縄は「国内の海外」と言われることもあるほど美しい海。<br>沖縄の海の色を作り出す立役者は「サンゴ」沖縄の美しい海の中を想像すれば、<br>まず思い浮かぶのが「サンゴ」ではないか。<br>サンゴは沖縄の海の美しさを作り出すのに欠かすことのできない存在である";
+      document.getElementById("mainTitle").innerHTML = "沖縄";
+		}else{
+      document.getElementById("mainTitle").innerHTML = "沖縄";
+			photoText.innerHTML = "沖縄は「国内の海外」と言われることもあるほど美しい海。<br>沖縄の海の色を作り出す立役者は「サンゴ」沖縄の美しい海の中を想像すれば、<br>まず思い浮かぶのが「サンゴ」ではないか。<br>サンゴは沖縄の海の美しさを作り出すのに欠かすことのできない存在である";
+		}
+	}
+
+  function clickEventOgasawara(){
+		if(photoText.style.display　==　"none"){
+			photoText.style.display =　"block";
+			photoText.innerHTML = "2011年、日本で4番目の世界自然遺産として認定された小笠原諸島。<br>これまで大陸と繋がったことのない海洋島のため、<br>島にたどり着いた生物が独自に進化を遂げ特異な生態系を有していること <br>が世界遺産として評価された理由。";
+      document.getElementById("mainTitle").innerHTML = "小笠原諸島";
+		}else{
+      document.getElementById("mainTitle").innerHTML = "小笠原諸島";
+			photoText.innerHTML = "2011年、日本で4番目の世界自然遺産として認定された小笠原諸島。<br>これまで大陸と繋がったことのない海洋島のため、<br>島にたどり着いた生物が独自に進化を遂げ特異な生態系を有していること <br>が世界遺産として評価された理由。";
+		}
+	}
+
+  function clickEventKagoshima(){
+    if(photoText.style.display　==　"none"){
+      photoText.style.display =　"block";
+      photoText.innerHTML = "南から北上する黒潮は、大量の暖かい海水を鹿児島の海岸に運んでくる。<br>この流れが、鹿児島の島々をつなぎ、<br>鹿児島の多様な自然を特徴づける大きな要因になっている。<br>砂浜海岸がいくつかあり、<br>この砂浜で繰り広げられる生き物たちのドラマが一つの魅力。";
+      document.getElementById("mainTitle").innerHTML = "鹿児島";
+    }else{
+      document.getElementById("mainTitle").innerHTML = "鹿児島";
+      photoText.innerHTML = "南から北上する黒潮は、大量の暖かい海水を鹿児島の海岸に運んでくる。<br>この流れが、鹿児島の島々をつなぎ、<br>鹿児島の多様な自然を特徴づける大きな要因になっている。<br>砂浜海岸がいくつかあり、<br>この砂浜で繰り広げられる生き物たちのドラマが一つの魅力。";
+    }
+  }
+
+  function clickEventMexico(){
+    if(photoText.style.display　==　"none"){
+      photoText.style.display =　"block";
+      photoText.innerHTML = "海底は5つの盆地から成り、互いに海底山脈で分けられる。<br>ヒスパニヨラ海溝とプエルトリコ海溝は地震の巣であり、<br>過去500年間にマグニチュード7.5以上の大地震が10回以上発生し、<br>津波被害を生じた。<br>カリブ海のほぼ全域がカリブプレートに属する。";
+      document.getElementById("mainTitle").innerHTML = "メキシコ(カリブ海)";
+    }else{
+      document.getElementById("mainTitle").innerHTML = "メキシコ(カリブ海)";
+      photoText.innerHTML = "海底は5つの盆地から成り、互いに海底山脈で分けられる。<br>ヒスパニヨラ海溝とプエルトリコ海溝は地震の巣であり、<br>過去500年間にマグニチュード7.5以上の大地震が10回以上発生し、<br>津波被害を生じた。<br>カリブ海のほぼ全域がカリブプレートに属する。";
+    }
+  }
+
+  function clickEventAustralia(){
+    if(photoText.style.display　==　"none"){
+      photoText.style.display =　"block";
+      photoText.innerHTML = "世界唯一の大陸国家であり島大陸とも言われるオーストラリアは、<br>文字通り広い国土の周囲をすべて海に囲まれている。<br>世界遺産で知られるグレートバリアリーフでのダイビングが<br>有名で日本人にも知名度があり観光地としても有名である。";
+      document.getElementById("mainTitle").innerHTML = "オーストラリア";
+    }else{
+      document.getElementById("mainTitle").innerHTML = "オーストラリア";
+      photoText.innerHTML = "世界唯一の大陸国家であり島大陸とも言われるオーストラリアは、<br>文字通り広い国土の周囲をすべて海に囲まれている。<br>世界遺産で知られるグレートバリアリーフでのダイビングが<br>有名で日本人にも知名度があり観光地としても有名である。";
+    }
+  }
+
+  function clickEventAfrica(){
+    if(photoText.style.display　==　"none"){
+      photoText.style.display =　"block";
+      photoText.innerHTML = "アフリカと言えば砂漠やサバンナなどのイメージが強いが、<br>ザンジバル島は「アフリカの楽園」とも呼ばれており、<br>なんとも美しいビーチが点在している島。<br>欧米人の方にとっては人気のリゾート観光地だ。";
+      document.getElementById("mainTitle").innerHTML = "アフリカ（ザンジバル島）";
+    }else{
+      document.getElementById("mainTitle").innerHTML = "アフリカ（ザンジバル島）";
+      photoText.innerHTML = "アフリカと言えば砂漠やサバンナなどのイメージが強いが、<br>ザンジバル島は「アフリカの楽園」とも呼ばれており、<br>なんとも美しいビーチが点在している島。<br>欧米人の方にとっては人気のリゾート観光地だ。";
+    }
+  }
+
+
+
+
+
+
+</script>
+
+</html>
